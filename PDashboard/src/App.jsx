@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Navegador } from './Navbar'
 import { ElHeader } from './Header'
 import styled from 'styled-components'
@@ -26,5 +25,5 @@ display:flex;
 `;
 
 const ContentGeneral = styled.main`
-background-color: yellow;
+background-color: #bbbbb6;
 ;`

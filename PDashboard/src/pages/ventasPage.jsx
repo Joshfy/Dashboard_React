@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components"
 
 export function VentasPage(){
@@ -18,5 +17,8 @@ const Content = styled.div`
 background-color: #f3f3f3;
 color: #170080;
 padding: 15px;
+width: 100vw;
+height: 100vh;
+
 
 `;

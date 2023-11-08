@@ -8,7 +8,7 @@ const ContentNavbar = styled.nav`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
+  max-block-size: 100vh;
   width: 200px;
   background-color: #bba3a3;
   padding-top: 50px;
