@@ -2,6 +2,7 @@ import { RoutesNavLinks } from './Routes/routes'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components';
 import { FaChartBar, FaHome, FaUserFriends  } from "react-icons/fa";
+import { useState } from 'react';
 
 const ContentNavbar = styled.nav`
   display: flex;
@@ -19,33 +20,57 @@ const NavItem = styled(NavLink)`
   text-decoration: none;
   color: black;
   margin-left: 5px;
+  cursor: pointer;
 `;
 
 const Letras = styled.div`
-display:flex;
-margin-left: 5px;
+  display:flex;
+  margin-left: 7px;
+    margin-bottom: 15px;
 `;
 
+const Sublinks = styled.ul`
+   display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  transform: translate(-51px, 20px);
+
+`;
+
+
 export function Navegador() {
+
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+
+  const handleNavItemClick = () => {
+    setIsSubmenuOpen(!isSubmenuOpen);
+  };
+
   return (
-    <>    
-    
-      <ContentNavbar>
+     <>
+       <ContentNavbar>
         <Letras>
-            <FaHome/>
-            <NavItem to="/home">  Page Inicio</NavItem>
+          <FaHome/>
+          <NavItem   to="/home">Page Inicio</NavItem>
         </Letras>
-        <Letras>
-            <FaChartBar/>
-            <NavItem to="/ventas">Page Ventas</NavItem>
-        </Letras> 
-        <Letras>
-         <FaUserFriends/> 
-        <NavItem to="/clients">Page Clientes</NavItem>  
-        </Letras>
-      </ContentNavbar>
- 
-      <RoutesNavLinks/>
-    </>
-  )
-}
+          <Letras>
+              <FaChartBar/>
+              <NavItem onClick={handleNavItemClick} to="/ventas">Page Ventas</NavItem>
+              {isSubmenuOpen && (
+            <Sublinks>
+              <a href="/listP">Listar Product</a>
+              <a href="/home/orange">Orange</a>
+            </Sublinks>
+          )}
+          </Letras> 
+          <Letras>
+          <FaUserFriends/> 
+          <NavItem to="/clients">Page Clientes</NavItem>  
+          </Letras>
+        </ContentNavbar>
+        <RoutesNavLinks/>
+      </>
+    )
+  }
+
