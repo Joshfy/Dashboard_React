@@ -3,7 +3,7 @@ import { HomePage } from "../pages/homePage";
 import { ClientesPage } from "../pages/clientesPage";
 import { VentasPage } from "../pages/ventasPage";
 import { ProductPage } from "../pages/listProduct";
-
+import { ListClient } from "../pages/listClient";
 export function RoutesNavLinks() {
     return (
       <Routes>
@@ -12,6 +12,9 @@ export function RoutesNavLinks() {
         <Route path="/ventas" element={<VentasPage/>}/>
         <Route path="/clients" element={<ClientesPage/>}/>
         <Route path="/listP" element={<ProductPage/>}/>
+        <Route path="/listC" element={<ListClient/>}/>
+
+
 
         
       </Routes>

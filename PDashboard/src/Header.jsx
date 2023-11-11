@@ -35,6 +35,8 @@ const Navigation = styled.nav`
   display: flex;
   align-items: center;
   text-align:start;
+  margin-right: 600px;
+
 
 `;
 

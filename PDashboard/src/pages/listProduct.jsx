@@ -1,28 +1,49 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
 
 const Content = styled.div`
-display: flex;
-gap: 15px;
+background-color: #7b7b7b;
+color: #170080;
+padding: 15px; 
+width: 100vw;
+height: 1100px;
+
+
+
 `;
+
+const ConC = styled.div`
+display: flex;
+display: grid;
+grid-template-columns: repeat(5, 2fr);
+overflow: hidden; /* Esto ocultará cualquier contenido que se salga del contenedor */
+flex-direction: column;
+`;
+
 const ProductCard = styled.div`
-  border: 3px solid #020202;
+  box-shadow: 0 0 10px #101010, 0 0 20px #101010, 0 0 30px #101010;
   padding: 10px;
-  margin-bottom: 10px;
-  max-width: 500px;
-  max-height: 500px;
+  width: 257px;
+    height: 334px;
+  gap: 10px;
+  margin: 10px;
+  overflow: hidden; /* Esto ocultará cualquier contenido que se salga del contenedor */
+  background-color: white; /* Esto ocultará cualquier contenido
+
+
 `;
 
 const ProductImage = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 `;
 
 const ProductTitle = styled.h3`
-  font-size: 18px;
+  font-size: 10px;
   font-weight: bold;
 `;
 
@@ -41,6 +62,10 @@ const ProductCategory = styled.p`
 const ProductRating = styled.p`
   font-size: 14px;
 `;
+const TIT = styled.h1`
+font-size: 14px;
+margin-top: 10px;
+`;
 
 export function ProductPage() {
   const [products, setProducts] = useState([]);
@@ -53,9 +78,11 @@ export function ProductPage() {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Productos</h2>
-      <Content className="product-list">
+    <Content>
+            <TIT>Lista de Productos</TIT>
+
+      <ConC >
+
         {products.map((product) => (
           <ProductCard key={product.id}>
             <ProductImage src={product.image} alt={product.title} />
@@ -66,7 +93,7 @@ export function ProductPage() {
             <ProductRating>Valoración: {product.rating.rate} (Total de votos: {product.rating.count})</ProductRating>
           </ProductCard>
         ))}
-      </Content>
-    </div>
+      </ConC>
+    </Content>
   );
 }

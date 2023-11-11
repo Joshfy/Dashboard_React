@@ -1,7 +1,7 @@
-import { RoutesNavLinks } from './Routes/routes'
-import { NavLink } from 'react-router-dom'
+import { RoutesNavLinks } from './Routes/routes';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaChartBar, FaHome, FaUserFriends  } from "react-icons/fa";
+import { FaChartBar, FaHome, FaUserFriends } from 'react-icons/fa';
 import { useState } from 'react';
 
 const ContentNavbar = styled.nav`
@@ -11,9 +11,10 @@ const ContentNavbar = styled.nav`
   align-items: center;
   max-block-size: 100vh;
   width: 200px;
-  background-color: #bba3a3;
+  background-color: #7d7d7d;
   padding-top: 50px;
   border-right: 2px solid black;
+  
 `;
 
 const NavItem = styled(NavLink)`
@@ -21,56 +22,79 @@ const NavItem = styled(NavLink)`
   color: black;
   margin-left: 5px;
   cursor: pointer;
+  
 `;
 
 const Letras = styled.div`
-  display:flex;
+  display: flex;
   margin-left: 7px;
-    margin-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: 25px;
+  &:focus,
+  &:hover {
+    border-color: blue;
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+    outline: none;
+    background-color: #ffff0028;
+
+  }
+
 `;
 
 const Sublinks = styled.ul`
-   display: flex;
+  display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
-  transform: translate(-51px, 20px);
-
+  transform: translate(-23px, 41px);
+  background-color: none;
 `;
 
-
 export function Navegador() {
+  const [isVentasSubmenuOpen, setIsVentasSubmenuOpen] = useState(false);
+  const [isClientesSubmenuOpen, setIsClientesSubmenuOpen] = useState(false);
 
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const handleVentasNavItemClick = () => {
+    setIsVentasSubmenuOpen(!isVentasSubmenuOpen);
+  };
 
-  const handleNavItemClick = () => {
-    setIsSubmenuOpen(!isSubmenuOpen);
+  const handleClientesNavItemClick = () => {
+    setIsClientesSubmenuOpen(!isClientesSubmenuOpen);
   };
 
   return (
-     <>
-       <ContentNavbar>
+    <>
+      <ContentNavbar>
         <Letras>
-          <FaHome/>
-          <NavItem   to="/home">Page Inicio</NavItem>
+          <FaHome />
+          <NavItem to="/home">Page Inicio</NavItem>
         </Letras>
-          <Letras>
-              <FaChartBar/>
-              <NavItem onClick={handleNavItemClick} to="/ventas">Page Ventas</NavItem>
-              {isSubmenuOpen && (
+        <Letras>
+          <FaChartBar />
+          <NavItem onClick={handleVentasNavItemClick} to="/ventas">
+            Page Ventas
+          </NavItem>
+          {isVentasSubmenuOpen && (
             <Sublinks>
-              <a href="/listP">Listar Product</a>
-              <a href="/home/orange">Orange</a>
+              <a href="/listP">Listar </a>
+              <a href="/">Agregar</a>
             </Sublinks>
           )}
-          </Letras> 
-          <Letras>
-          <FaUserFriends/> 
-          <NavItem to="/clients">Page Clientes</NavItem>  
-          </Letras>
-        </ContentNavbar>
-        <RoutesNavLinks/>
-      </>
-    )
-  }
-
+        </Letras>
+        <Letras>
+          <FaUserFriends />
+          <NavItem onClick={handleClientesNavItemClick} to="/clients">
+            Page Clientes
+          </NavItem>
+          {isClientesSubmenuOpen && (
+            <Sublinks>
+              <a href="/listC">Listar</a>
+              <a href="/listCompleto">Agregar</a>
+            </Sublinks>
+          )}
+        </Letras>
+      </ContentNavbar>
+      <RoutesNavLinks />
+    </>
+  );
+}

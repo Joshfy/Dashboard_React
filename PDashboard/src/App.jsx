@@ -21,6 +21,7 @@ export default App
 
 const Content = styled.div`
 display:flex;
+max-height: 1110!important; 
 
 `;
 
